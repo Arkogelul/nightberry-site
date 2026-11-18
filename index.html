@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightberry — 2D Animator</title>
+<meta name="description" content="Nightberry — 2D animator (key animation). ONE PIECE, Dragon Ball DAIMA, DIGIMON BEATBREAK, Re:Zero.">
+<meta property="og:title" content="Nightberry — 2D Animator">
+<meta property="og:description" content="Key animation for ONE PIECE, Dragon Ball DAIMA, DIGIMON BEATBREAK, Re:Zero. Website coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M40 8a24 24 0 1 0 16 40A20 20 0 0 1 40 8z' fill='%23c9b6ff'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg1:#0b0a1f; --bg2:#1c1442; --text:#ece8ff; --muted:#a49cc9; --accent:#c9b6ff; --line:rgba(201,182,255,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    min-height:100%;
+    background:radial-gradient(120% 90% at 50% 0%, var(--bg2) 0%, var(--bg1) 65%) fixed, var(--bg1);
+    color:var(--text);
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    display:flex;align-items:center;justify-content:center;
+    padding:48px 16px;overflow-x:hidden;
+  }
+  canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  main{position:relative;z-index:1;text-align:center;max-width:560px;width:100%}
+  .moon{width:44px;height:44px;margin:0 auto 28px;display:block;filter:drop-shadow(0 0 18px rgba(201,182,255,.55))}
+  h1{
+    font-family:Fraunces,Georgia,serif;font-weight:600;
+    font-size:clamp(44px,11vw,76px);letter-spacing:-.02em;line-height:1;
+  }
+  .role{margin-top:14px;color:var(--muted);font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+  .credits{margin-top:22px;font-size:15px;line-height:1.7;color:var(--text);opacity:.9}
+  .soon{
+    margin:36px auto 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    color:var(--muted);font-size:14px;line-height:1.8;max-width:360px
+  }
+  nav{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  nav a{
+    color:var(--text);text-decoration:none;font-size:14px;font-weight:500;
+    padding:10px 18px;border:1px solid var(--line);border-radius:999px;
+    transition:border-color .2s, background .2s, color .2s;
+  }
+  nav a:hover,nav a:focus-visible{border-color:var(--accent);background:rgba(201,182,255,.08);color:#fff;outline:none}
+  footer{margin-top:40px;font-size:12px;color:var(--muted);opacity:.7}
+  @media (prefers-reduced-motion:reduce){canvas{display:none}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main>
+  <svg class="moon" viewBox="0 0 64 64" aria-hidden="true"><path d="M40 8a24 24 0 1 0 16 40A20 20 0 0 1 40 8z" fill="#c9b6ff"/></svg>
+  <h1>Nightberry</h1>
+  <p class="role">2D Animator · Key Animation</p>
+  <p class="credits">ONE PIECE · Dragon Ball DAIMA · DIGIMON BEATBREAK · Re:Zero</p>
+  <p class="soon">Website coming soon<br>ウェブサイト準備中</p>
+  <nav>
+    <a href="https://x.com/nightberry_art" target="_blank" rel="noopener">X</a>
+    <a href="https://www.instagram.com/nightberry_animator/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://keyframe-staff-list.com/person/275453" target="_blank" rel="noopener">Credits</a>
+  </nav>
+  <footer>© Nightberry</footer>
+</main>
+<script>
+(()=>{const c=document.getElementById('sky'),x=c.getContext('2d');let w,h,s=[];
+function r(){const d=devicePixelRatio||1;w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+s=Array.from({length:Math.round(w*h/9000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+.2,p:Math.random()*6.28,v:Math.random()*.02+.005}))}
+function f(){x.clearRect(0,0,w,h);for(const t of s){t.p+=t.v;x.globalAlpha=.35+.65*Math.abs(Math.sin(t.p));x.fillStyle='#e8e0ff';x.beginPath();x.arc(t.x,t.y,t.r,0,6.283);x.fill()}requestAnimationFrame(f)}
+addEventListener('resize',r);r();f()})();
+</script>
+</body>
+</html>
